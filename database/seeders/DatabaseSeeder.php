@@ -13,15 +13,32 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Create Super Admin
+        \App\Models\User::factory()->withoutTwoFactor()->create([
+            'name' => 'Super Admin',
+            'email' => 'admin@presbycms.com',
+            'password' => bcrypt('password'),
+            'role' => 'Super Admin',
+        ]);
 
-        User::firstOrCreate(
-            ['email' => 'test@example.com'],
-            [
-                'name' => 'Test User',
-                'password' => 'password',
-                'email_verified_at' => now(),
-            ]
-        );
+        // Create other test roles if needed
+        $roles = [
+            'Church Admin',
+            'Minister',
+            'Elder',
+            'Deacon',
+            'Treasurer',
+            'Secretary',
+            'Department Head',
+            'Member',
+        ];
+
+        foreach ($roles as $role) {
+            \App\Models\User::factory()->withoutTwoFactor()->create([
+                'name' => "Sample {$role}",
+                'email' => strtolower(str_replace(' ', '.', $role)) . '@presbycms.com',
+                'role' => $role,
+            ]);
+        }
     }
 }

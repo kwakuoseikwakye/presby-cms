@@ -10,30 +10,75 @@ import {
     SidebarMenuButton,
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
-import { dashboard } from '@/routes';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid } from 'lucide-react';
+import {
+    LayoutGrid,
+    Users,
+    DollarSign,
+    CheckSquare,
+    Layers,
+    Calendar,
+    Settings,
+    Gavel,
+    MessageSquare,
+    BarChart,
+} from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
     {
         title: 'Dashboard',
-        href: dashboard(),
+        href: '/dashboard',
         icon: LayoutGrid,
+    },
+    {
+        title: 'Members',
+        href: '/members',
+        icon: Users,
+    },
+    {
+        title: 'Attendance',
+        href: '/attendance',
+        icon: CheckSquare,
+    },
+    {
+        title: 'Finance',
+        href: '/finance',
+        icon: DollarSign,
+    },
+    {
+        title: 'Departments',
+        href: '/groups',
+        icon: Layers,
+    },
+    {
+        title: 'Governance',
+        href: '/governance',
+        icon: Gavel,
+    },
+    {
+        title: 'Events',
+        href: '/events',
+        icon: Calendar,
+    },
+    {
+        title: 'Communication',
+        href: '/announcements',
+        icon: MessageSquare,
+    },
+    {
+        title: 'Reports',
+        href: '/reports',
+        icon: BarChart,
     },
 ];
 
 const footerNavItems: NavItem[] = [
     {
-        title: 'Repository',
-        href: 'https://github.com/laravel/react-starter-kit',
-        icon: Folder,
-    },
-    {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits#react',
-        icon: BookOpen,
+        title: 'Settings',
+        href: '/settings/profile',
+        icon: Settings,
     },
 ];
 
@@ -44,7 +89,7 @@ export function AppSidebar() {
                 <SidebarMenu>
                     <SidebarMenuItem>
                         <SidebarMenuButton size="lg" asChild>
-                            <Link href={dashboard()} prefetch>
+                            <Link href="/dashboard" prefetch>
                                 <AppLogo />
                             </Link>
                         </SidebarMenuButton>

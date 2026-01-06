@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -48,5 +49,20 @@ class User extends Authenticatable
             'password' => 'hashed',
             'two_factor_confirmed_at' => 'datetime',
         ];
+    }
+
+    public function member()
+    {
+        return $this->hasOne(Member::class);
+    }
+
+    public function isAdmin()
+    {
+        return in_array($this->role, ['Super Admin', 'Church Admin']);
+    }
+
+    public function hasRole($role)
+    {
+        return $this->role === $role;
     }
 }
